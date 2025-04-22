@@ -49,7 +49,7 @@ builder.WebHost.UseUrls("http://*:80");
 
 
 var app = builder.Build();
-app.UseCors("AllowAll"); // ATENÇÃO: Isso deve vir antes de app.UseAuthorization()
+app.UseCors("AllowAll");
 
 if (app.Environment.IsDevelopment())
 {

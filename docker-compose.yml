@@ -1,0 +1,29 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "MinhaSenha123!"
+    ports:
+      - "1433:1433"
+    networks:
+      - monitorar-network
+
+  api:
+    build:
+      context: .
+      dockerfile: MonitorarTarefas.API/Dockerfile
+    container_name: monitorar-api
+    depends_on:
+      - sqlserver
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - monitorar-network
+
+networks:
+  monitorar-network:
+    driver: bridge

@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<NoWarn>CS1591</NoWarn>
+	<RestoreFallbackFolders></RestoreFallbackFolders>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,10 +33,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MonitorarTarefas.Domain\MonitorarTarefas.Domain.csproj" />
     <ProjectReference Include="..\MonitorarTarefas.Infrastructure\MonitorarTarefas.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
