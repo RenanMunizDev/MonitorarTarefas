@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MonitorarTarefas.API.DTOs;
 using MonitorarTarefas.Infrastructure.Data;
-using MonitorarTarefas.Services.Interfaces;
-using System;
 
 namespace MonitorarTarefas.Controllers
 {
@@ -32,10 +30,16 @@ namespace MonitorarTarefas.Controllers
             }
 
             // Define período padrão (últimos 30 dias)
-            DateTime dataFimParsed = string.IsNullOrEmpty(dataFim) ? DateTime.UtcNow : DateTime.Parse(dataFim);
+            var formato = "dd/MM/yyyy";
+            var cultura = CultureInfo.InvariantCulture;
+
+            DateTime dataFimParsed = string.IsNullOrEmpty(dataFim)
+                ? DateTime.UtcNow
+                : DateTime.ParseExact(dataFim, formato, cultura);
+
             DateTime dataInicioParsed = string.IsNullOrEmpty(dataInicio)
                 ? dataFimParsed.AddDays(-30)
-                : DateTime.Parse(dataInicio);
+                : DateTime.ParseExact(dataInicio, formato, cultura);
 
             if (dataInicioParsed > dataFimParsed)
             {
